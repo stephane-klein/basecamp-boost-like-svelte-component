@@ -1,4 +1,6 @@
 <script>
+    import { clickOutside } from "$lib/clickOutside.js";
+
     let open = false;
     export let who = "";
     export let content = undefined;
@@ -8,7 +10,13 @@
 </script>
 
 {#if content}
-    <div class="flex flex-row bg-gray-200 rounded-full p-0 items-center pr-2">
+    <div
+        class="flex flex-row bg-gray-200 rounded-full p-0 items-center pr-2"
+        use:clickOutside
+        on:click_outside={() => {
+            open = false;
+        }}
+    >
         <img
             class="inline-block h-6 w-6 rounded-full"
             src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -17,7 +25,7 @@
         <span
             class="px-2 py-1 cursor-pointer"
             on:click={() => {
-                open = true;
+                open = !open;
             }}
         >
             {content}
