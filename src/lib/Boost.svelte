@@ -3,10 +3,57 @@
     export let who = "";
     export let content = undefined;
     export let onAdd = undefined;
+    export let onRemove = undefined;
     let edit_content = "";
 </script>
 
-{#if open}
+{#if content}
+    <div class="flex flex-row bg-gray-200 rounded-full p-0 items-center pr-2">
+        <img
+            class="inline-block h-6 w-6 rounded-full"
+            src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+            alt=""
+        />
+        <span
+            class="px-2 py-1 cursor-pointer"
+            on:click={() => {
+                open = true;
+            }}
+        >
+            {content}
+        </span>
+        {#if open}
+            <span
+                class="cursor-pointer text-red-600"
+                on:click={() => {
+                    if (onRemove) {
+                        onRemove();
+                    }
+                }}
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="icon icon-tabler icon-tabler-trash"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M4 7l16 0"></path>
+                    <path d="M10 11l0 6"></path>
+                    <path d="M14 11l0 6"></path>
+                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                </svg>
+            </span>
+        {/if}
+    </div>
+{:else if open}
     <div class="flex flex-row">
         <div class="flex flex-row bg-gray-200 rounded-full py-1 px-2 items-center">
             <img
@@ -75,17 +122,6 @@
                 </svg>
             </span>
         </div>
-    </div>
-{:else if content}
-    <div class="flex flex-row bg-gray-200 rounded-full p-0 items-center">
-        <img
-            class="inline-block h-6 w-6 rounded-full"
-            src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-            alt=""
-        />
-        <span class="pl-2 pr-4 py-1">
-            {content}
-        </span>
     </div>
 {:else}
     <div

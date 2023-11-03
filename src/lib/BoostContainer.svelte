@@ -7,8 +7,14 @@
 </script>
 
 <div class="flex flex-row gap-2">
-    {#each data as item}
-        <Boost {who} content={item.content} />
+    {#each data as item, i}
+        <Boost
+            {who}
+            content={item.content}
+            onRemove={() => {
+                data = data.filter((_, index) => index != i);
+            }}
+        />
     {/each}
     <Boost
         {who}
