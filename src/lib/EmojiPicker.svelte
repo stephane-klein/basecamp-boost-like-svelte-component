@@ -1,17 +1,30 @@
 <script>
-    import { onMount } from "svelte";
+    import { Popover, PopoverButton, PopoverPanel } from "@rgossiaux/svelte-headlessui";
 
+    export let onSelect = undefined;
     let element;
-
-    onMount(async () => {
-        const { default: Picker } = await import("emoji-picker-element/svelte");
-        const picker = new Picker();
-        element.appendChild(picker);
-        picker.addEventListener("emoji-click", (event) => {
-            console.log(event.detail); // will log something like the above
-        });
-    });
-    /*  bind:this={element} */
 </script>
 
-<p bind:this={element}>Button</p>
+<Popover style="position: relative;" let:open let:close>
+    <PopoverButton
+        on:click={async () => {
+            if (!open) {
+                const { default: Picker } = await import("emoji-picker-element/svelte");
+                const picker = new Picker();
+                element.appendChild(picker);
+                picker.addEventListener("emoji-click", (event) => {
+                    if (onSelect) {
+                        onSelect(event.detail);
+                    }
+                    close();
+                });
+            }
+        }}
+    >
+        Open
+    </PopoverButton>
+
+    <PopoverPanel style="position: absolute; z-index: 10;">
+        <div bind:this={element}></div>
+    </PopoverPanel>
+</Popover>

@@ -30,7 +30,11 @@
         </div>
     </div>
 
-    <EmojiPicker />
+    <EmojiPicker
+        onSelect={(data) => {
+            console.log(data);
+        }}
+    />
 
     <div class="border-t pt-4">
         <div class="flex flex-row gap-2">
