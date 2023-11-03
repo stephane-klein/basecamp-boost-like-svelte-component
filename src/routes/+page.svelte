@@ -1,6 +1,7 @@
 <script>
     import Boost from "$lib/Boost.svelte";
     import BoostContainer from "$lib/BoostContainer.svelte";
+    import EmojiPicker from "$lib/EmojiPicker.svelte";
 
     let row1 = [];
     let row2 = [
@@ -28,6 +29,8 @@
             <BoostContainer currentUser="John" data={row1} />
         </div>
     </div>
+
+    <EmojiPicker />
 
     <div class="border-t pt-4">
         <div class="flex flex-row gap-2">
