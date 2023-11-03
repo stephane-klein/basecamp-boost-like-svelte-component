@@ -2,6 +2,7 @@
     let open = false;
     export let who = "";
     export let content = undefined;
+    export let onAdd = undefined;
     let edit_content = "";
 </script>
 
@@ -26,7 +27,10 @@
                 class="cursor-pointer text-green-700"
                 on:click={() => {
                     open = false;
-                    content = edit_content;
+                    if (onAdd) {
+                        onAdd(edit_content);
+                    }
+                    edit_content = "";
                 }}
             >
                 <svg
