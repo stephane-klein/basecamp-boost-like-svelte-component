@@ -21,9 +21,8 @@
             }
         }}
     >
-        Open
+        <slot />
     </PopoverButton>
-
     <PopoverPanel style="position: absolute; z-index: 10;">
         <div bind:this={element}></div>
     </PopoverPanel>

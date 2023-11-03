@@ -1,4 +1,5 @@
 <script>
+    import EmojiPicker from "$lib/EmojiPicker.svelte";
     import { clickOutside } from "$lib/clickOutside.js";
 
     let open = false;
@@ -72,12 +73,40 @@
             <input
                 type="text"
                 maxlength="16"
-                class="w-40 px-2 py-1 bg-transparent focus:outline-none"
+                class="w-42 px-2 py-1 bg-transparent focus:outline-none"
                 autofocus="autofocus"
                 placeholder={`Boost ${who}`}
                 bind:value={edit_content}
             />
 
+            <div style="height: 24px">
+                <EmojiPicker
+                    onSelect={(data) => {
+                        if (edit_content.length < 16) {
+                            edit_content = edit_content + data.unicode;
+                        }
+                    }}
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-mood-smile"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                        <path d="M9 10l.01 0"></path>
+                        <path d="M15 10l.01 0"></path>
+                        <path d="M9.5 15a3.5 3.5 0 0 0 5 0"></path>
+                    </svg>
+                </EmojiPicker>
+            </div>
             <span
                 class="cursor-pointer text-green-700"
                 on:click={() => {
