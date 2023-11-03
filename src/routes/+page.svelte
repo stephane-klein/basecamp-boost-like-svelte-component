@@ -1,5 +1,6 @@
 <script>
     import Boost from "$lib/Boost.svelte";
+    import BoostContainer from "$lib/BoostContainer.svelte";
 </script>
 
 <div class="flex flex-col gap-4 w-2/3 mx-auto py-8">
@@ -16,7 +17,9 @@
                 fermentum, nibh nisi scelerisque nibh, elementum varius leo nulla a ligula. Phasellus sed arcu placerat,
                 blandit diam in, congue metus. Proin molestie lectus quis orci faucibus, non egestas risus convallis.
             </p>
-            <Boost who="John" />
+            <BoostContainer>
+                <Boost who="John" />
+            </BoostContainer>
         </div>
     </div>
 
@@ -34,7 +37,9 @@
                     dapibus justo malesuada. Fusce imperdiet purus augue, ut suscipit quam elementum et. Fusce sit amet
                     dictum augue. Integer imperdiet eros tincidunt vulputate tempor.
                 </p>
-                <Boost who="Alice" />
+                <BoostContainer>
+                    <Boost who="Alice" content="top!" />
+                </BoostContainer>
             </div>
         </div>
     </div>
@@ -53,7 +58,9 @@
                     id sapien. Quisque ultrices vulputate commodo. Aliquam erat volutpat. Phasellus hendrerit ligula
                     vitae dignissim imperdiet. Phasellus nibh dolor, commodo vel laoreet et, porttitor vitae odio.
                 </p>
-                <Boost who="Alice" />
+                <BoostContainer>
+                    <Boost who="Alice" />
+                </BoostContainer>
             </div>
         </div>
     </div>

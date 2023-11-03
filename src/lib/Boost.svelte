@@ -1,6 +1,8 @@
 <script>
     let open = false;
     export let who = "";
+    export let content = undefined;
+    let edit_content = "";
 </script>
 
 {#if open}
@@ -17,12 +19,14 @@
                 class="w-40 px-2 py-1 bg-transparent focus:outline-none"
                 autofocus="autofocus"
                 placeholder={`Boost ${who}`}
+                bind:value={edit_content}
             />
 
             <span
                 class="cursor-pointer text-green-700"
                 on:click={() => {
                     open = false;
+                    content = edit_content;
                 }}
             >
                 <svg
@@ -46,6 +50,7 @@
                 class="cursor-pointer text-red-600"
                 on:click={() => {
                     open = false;
+                    edit_content = "";
                 }}
             >
                 <svg
@@ -67,6 +72,17 @@
             </span>
         </div>
     </div>
+{:else if content}
+    <div class="flex flex-row bg-gray-200 rounded-full p-0 items-center">
+        <img
+            class="inline-block h-6 w-6 rounded-full"
+            src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+            alt=""
+        />
+        <span class="pl-2 pr-4 py-1">
+            {content}
+        </span>
+    </div>
 {:else}
     <div
         class="bg-gray-200 rounded-full flex flex-row px-2 py-1 justify-center inline-block w-fit cursor-pointer"
@@ -74,28 +90,6 @@
             open = true;
         }}
     >
-        <!--
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="icon icon-tabler icon-tabler-mood-plus"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        stroke-width="2"
-        stroke="currentColor"
-        fill="none"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-    >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <path d="M20.985 12.528a9 9 0 1 0 -8.45 8.456"></path>
-        <path d="M16 19h6"></path>
-        <path d="M19 16v6"></path>
-        <path d="M9 10h.01"></path>
-        <path d="M15 10h.01"></path>
-        <path d="M9.5 15c.658 .64 1.56 1 2.5 1s1.842 -.36 2.5 -1"></path>
-    </svg>
-    -->
         <svg
             xmlns="http://www.w3.org/2000/svg"
             class="icon icon-tabler icon-tabler-message-circle-plus"
